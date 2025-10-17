@@ -9,6 +9,11 @@ Logback과 Logstash Encoder를 사용한 Spring Boot 애플리케이션의 통�
 - **MDC (Mapped Diagnostic Context)**: 분산 추적 컨텍스트
 - **Interceptor**: HTTP 요청/응답 자동 로깅
 - **Structured Arguments**: 구조화된 로그 데이터
+- **전역 예외 처리**: 중앙화된 예외 처리 및 에러 응답
+- **메트릭 수집**: 엔드포인트별 요청 수, 응답 시간, 에러율 추적
+- **보안 헤더**: XSS, Clickjacking 방지 등 보안 헤더 자동 추가
+- **캐시 시스템**: TTL 기반 인메모리 캐시
+- **표준 API 응답**: 일관된 응답 형식 (ApiResponse DTO)
 
 ## 필수 요구사항
 
