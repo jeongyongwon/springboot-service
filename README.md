@@ -4,21 +4,45 @@ Logback과 Logstash Encoder를 사용한 Spring Boot 애플리케이션의 통�
 
 ## 주요 기능
 
+### 핵심 기능
 - **Logback**: Spring Boot 기본 로깅 프레임워크
 - **Logstash Logback Encoder**: JSON 로그 생성
 - **MDC (Mapped Diagnostic Context)**: 분산 추적 컨텍스트
 - **Interceptor**: HTTP 요청/응답 자동 로깅
 - **Structured Arguments**: 구조화된 로그 데이터
-- **전역 예외 처리**: 중앙화된 예외 처리 및 에러 응답
-- **메트릭 수집**: 엔드포인트별 요청 수, 응답 시간, 에러율 추적
+
+### 보안 & 인증
+- **JWT 인증**: 토큰 기반 인증 시스템
+- **Spring Security**: 엔드포인트 보안 및 권한 관리
 - **보안 헤더**: XSS, Clickjacking 방지 등 보안 헤더 자동 추가
-- **캐시 시스템**: TTL 기반 인메모리 캐시
+
+### 데이터 관리
+- **JPA/Hibernate**: 데이터베이스 ORM
+- **Redis 캐시**: 분산 캐시 시스템
+- **PostgreSQL 지원**: 프로덕션 DB 지원
+- **Validation**: 입력 데이터 검증
+
+### 운영 & 모니터링
+- **전역 예외 처리**: 중앙화된 예외 처리 및 에러 응답
+- **메트릭 수집**: Prometheus 엔드포인트 제공
+- **Actuator**: 헬스 체크 및 애플리케이션 정보
 - **표준 API 응답**: 일관된 응답 형식 (ApiResponse DTO)
+
+## 기술 스택
+
+- **Java**: 17
+- **Spring Boot**: 3.2.0
+- **Spring Security**: JWT 기반 인증
+- **Database**: H2 (개발), PostgreSQL (프로덕션)
+- **Cache**: Redis
+- **Build**: Maven
+- **Test**: JUnit 5, MockMvc
 
 ## 필수 요구사항
 
 - Java 17 이상
 - Maven 3.6 이상
+- Redis (선택사항, 캐시 기능 사용 시)
 
 ## 설치 및 실행
 
