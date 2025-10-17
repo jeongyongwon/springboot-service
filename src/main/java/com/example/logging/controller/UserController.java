@@ -165,3 +165,25 @@ public class UserController {
         }
     }
 }
+
+    /**
+     * DTO for user creation with validation
+     */
+    public static class CreateUserRequest {
+        private String name;
+        private String email;
+        
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+        
+        public void validate() {
+            if (name == null || name.trim().isEmpty()) {
+                throw new IllegalArgumentException("Name is required");
+            }
+            if (email == null || !email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
+                throw new IllegalArgumentException("Invalid email format");
+            }
+        }
+    }
