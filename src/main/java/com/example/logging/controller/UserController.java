@@ -40,6 +40,11 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUser(@PathVariable Long id) {
+        if (id == null || id <= 0) {
+            logger.warn("Invalid user ID provided: {}", id);
+            return ResponseEntity.badRequest()
+                .body(Map.of("error", "User ID must be positive"));
+        }
         long startTime = System.currentTimeMillis();
 
         try {
