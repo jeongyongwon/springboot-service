@@ -140,7 +140,7 @@ public class UserController {
 
         try {
             // 느린 쿼리 시뮬레이션
-            Thread.sleep(2500);
+            Thread.sleep(800);
 
             // 더미 쿼리 실행
             userRepository.findAll();
