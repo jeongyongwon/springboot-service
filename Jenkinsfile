@@ -119,7 +119,7 @@ pipeline {
         }
         always {
             echo '빌드 완료 - 정리 작업'
-            junit '**/target/surefire-reports/*.xml' allowEmptyResults: true
+            junit testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true
             cleanWs()
         }
     }
