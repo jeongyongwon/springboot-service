@@ -3,13 +3,7 @@ pipeline {
 
     environment {
         PROJECT_NAME = 'springboot-service'
-        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
         MAVEN_OPTS = '-Xmx1024m'
-    }
-
-    tools {
-        maven 'Maven 3.9.0'
-        jdk 'JDK 17'
     }
 
     stages {
