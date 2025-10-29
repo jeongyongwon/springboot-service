@@ -25,52 +25,28 @@ public class ErrorTestController {
     private static final Logger logger = LoggerFactory.getLogger(ErrorTestController.class);
 
     /**
-     * GET /api/test/null-pointer - Null Pointer Exception
+     * GET /api/test/null-pointer - Null Pointer Exception (실제 스택 트레이스 발생)
      */
     @GetMapping("/null-pointer")
     public ResponseEntity<?> testNullPointer() {
-        try {
-            String str = null;
-            int length = str.length(); // NullPointerException 발생
+        // 실제 에러를 발생시켜 GlobalExceptionHandler에서 처리하도록 함
+        // 이렇게 하면 완전한 스택 트레이스가 로그에 포함됨
+        String str = null;
+        int length = str.length(); // NullPointerException with full stack trace
 
-            return ResponseEntity.ok(Map.of("length", length));
-
-        } catch (NullPointerException ex) {
-            Map<String, Object> context = new HashMap<>();
-            context.put("operation", "access_method");
-            context.put("endpoint", "/api/test/null-pointer");
-            context.put("attempted_access", "str.length()");
-
-            LoggerUtil.logError(logger, "Null pointer exception occurred", ex, context);
-
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("error", "Cannot invoke method on null object"));
-        }
+        return ResponseEntity.ok(Map.of("length", length));
     }
 
     /**
-     * GET /api/test/array-index-out-of-bounds - Array Index Out of Bounds (유사 시나리오 1)
+     * GET /api/test/array-index-out-of-bounds - Array Index Out of Bounds (실제 스택 트레이스 발생)
      */
     @GetMapping("/array-index-out-of-bounds")
     public ResponseEntity<?> testArrayIndexOutOfBounds() {
-        try {
-            String[] items = {"a", "b", "c"};
-            String item = items[10]; // ArrayIndexOutOfBoundsException 발생
+        // 실제 에러를 발생시켜 GlobalExceptionHandler에서 처리하도록 함
+        String[] items = {"a", "b", "c"};
+        String item = items[10]; // ArrayIndexOutOfBoundsException with full stack trace
 
-            return ResponseEntity.ok(Map.of("item", item));
-
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            Map<String, Object> context = new HashMap<>();
-            context.put("operation", "array_access");
-            context.put("endpoint", "/api/test/array-index-out-of-bounds");
-            context.put("array_length", 3);
-            context.put("attempted_index", 10);
-
-            LoggerUtil.logError(logger, "Array index out of bounds error", ex, context);
-
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("error", "Array index error"));
-        }
+        return ResponseEntity.ok(Map.of("item", item));
     }
 
     /**
